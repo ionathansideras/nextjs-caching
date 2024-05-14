@@ -1,4 +1,5 @@
 import Messages from "@/components/messages";
+import { getMessages } from "@/lib/messages";
 import { unstable_noStore } from "next/cache";
 
 // settings for file cache configuration
@@ -9,12 +10,13 @@ export default async function MessagesPage() {
     // this will disable the cache for this request
     // unstable_noStore();
     // we add a tag so we revalidate the cache for this tag when we create a new message
-    const response = await fetch("http://localhost:8080/messages", {
-        next: {
-            tags: ["msg"],
-        },
-    });
-    const messages = await response.json();
+    // const response = await fetch("http://localhost:8080/messages", {
+    //     next: {
+    //         tags: ["msg"],
+    //     },
+    // });
+
+    const messages = await getMessages();
 
     if (!messages || messages.length === 0) {
         return <p>No messages found</p>;

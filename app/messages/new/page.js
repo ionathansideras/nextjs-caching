@@ -11,7 +11,7 @@ export default function NewMessagePage() {
         addMessage(message);
         // clear the cache for the messages page so we can see the new message
         // revalidatePath("/messages");
-        // clears the cache for all the "msg" tags that are set on some fetch requests
+        // clears the cache for all the "msg" tags that are set on some fetch requests or from server actions
         revalidateTag("msg");
         redirect("/messages");
     }
